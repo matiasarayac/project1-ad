@@ -1,12 +1,11 @@
 Project 1 - Design and Analysis of Algorithms
----------------------------------------------
---------------------------------------------
+=========
 
 Run
 ---
 
 ```sh
-https://github.com/matiasarayac/project1-ad
+git clone https://github.com/matiasarayac/project1-ad
 cd project1-ad
 make
 ./fobias
