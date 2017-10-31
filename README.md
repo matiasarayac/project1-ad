@@ -8,7 +8,7 @@ Run
 git clone https://github.com/matiasarayac/project1-ad
 cd project1-ad
 make
-./fobias
+./problema1 input-1.dat
 ```
 
 

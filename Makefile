@@ -1,17 +1,20 @@
 flags=-Wall -std=c++11
 comp=g++
-prog=fobias
+prog=problema1
 
 comp:$(prog)
 
 exe:$(prog)
 	./$(prog)
 
-$(prog): main.o
-	$(comp) main.o -o $(prog) $(flags)
+$(prog): main.o People.o
+	$(comp) main.o People.o -o $(prog) $(flags)
 
-main.o: main.cpp
+main.o: main.cpp People.h
 	$(comp) -c main.cpp $(flags)
+
+People.o: People.cpp People.h includes.h
+	$(comp) -c People.cpp $(flags)
 
 clean:
 	rm -f *~

@@ -2,5 +2,6 @@
 CMakeLists.txt
 .DS_Store
 .idea/
-fobias
+problema1
 main.o
+People.o
