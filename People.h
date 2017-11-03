@@ -7,27 +7,20 @@
 
 #include "includes.h"
 
-extern int NO_EXIST;
-
-
 class People {
 private:
     vector<int> phobias;
     vector<vector<int>> graphs;
     map<int, vector<int>> person;
     map<int, bool> visited;
+    map<int, int> p_count;
+    int communities;
+    vector<int> solution;
 
-    void printGraphs();
-    void pushBackRelationship(vector<int> v);
-    void createPeopleRelations(vector<int> v);
-    void printMap();
-    void addRelation(vector<int> v, int myIndex, int friendIndex, vector<int> fzero, vector<int> fone);
-    void createCommunities();
     void addEdge(int u, int v);
-    void DFSUtil(int u);
     void printVisited();
     void BFS(int u);
-//    void DFS(int V);
+    void generateSolution(map<int, int> aux);
 
 public:
     People(string fname);
