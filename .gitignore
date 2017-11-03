@@ -5,3 +5,4 @@ CMakeLists.txt
 problema1
 main.o
 People.o
+*.dat
