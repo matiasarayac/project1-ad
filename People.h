@@ -10,7 +10,6 @@
 class People {
 private:
     vector<int> phobias;
-    vector<vector<int>> graphs;
     map<int, vector<int>> person;
     map<int, bool> visited;
     map<int, int> p_count;
@@ -20,10 +19,9 @@ private:
     void addEdge(int u, int v);
     void printVisited();
     void BFS(int u);
-    void generateSolution(map<int, int> aux);
 
 public:
-    People(string fname);
+    People(string fname, string output);
 
 };
 

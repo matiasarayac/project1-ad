@@ -4,7 +4,7 @@
 
 #include "People.h"
 
-People::People(string fname) {
+People::People(string fname, string output) {
 
     string line;
     int people_count;
@@ -52,13 +52,18 @@ People::People(string fname) {
             }
         }
 
-        cout << "communities: " << communities << endl;
-        for(auto &i: solution){
-            cout << "phobia: " << i << endl;
-        }
-
     } else cout << "Unable to open file" << endl;
 
+    ofstream ofile;
+    ofile.open(output);
+    ofile << communities << endl;
+
+    for (auto &i: solution) {
+        ofile << i << endl;
+    }
+
+    ofile.close();
+    myfile.close();
 }
 
 void People::addEdge(int u, int v) {
@@ -74,11 +79,24 @@ void People::BFS(int u) {
     int t;
     map<int, int> aux;
     aux = p_count; //p_count contain a map with all phobias with count 0
+    int biggerCount = 0, phobia = 0, curr_phobia;
 
     while (!q.empty()) {
         t = q.front();
-        ++aux[phobias[t - 1]]; //added 1 to specific phobia
         q.pop();
+
+        // Check if there is new common phobia
+        curr_phobia = phobias[t - 1];
+        ++aux[curr_phobia]; //added 1 to current phobia
+        if (aux[curr_phobia] > biggerCount) {
+            phobia = curr_phobia;
+            biggerCount = aux[curr_phobia];
+        } else if (aux[curr_phobia] == biggerCount) {
+            if (phobia > curr_phobia) {
+                phobia = curr_phobia;
+            }
+        }
+
         for (auto &i : person[t]) {
             if (visited[i] == false) {
                 visited[i] = true;
@@ -87,26 +105,10 @@ void People::BFS(int u) {
         }
     }
 
-    generateSolution(aux);
-
-}
-
-// Search for the more common phobia O(n) and added to vector solution
-void People::generateSolution(map<int, int> aux){
-    int biggerCount = 0, phobia = 0;
-    for (auto elem: aux) {
-        if (elem.second > biggerCount) {
-            phobia = elem.first;
-            biggerCount = elem.second;
-        } else if (elem.second == biggerCount) {
-            if (phobia > elem.first) {
-                phobia = elem.first;
-            }
-        }
-    }
-
     solution.push_back(phobia);
+
 }
+
 
 // Util function to check vector visited
 void People::printVisited() {
