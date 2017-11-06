@@ -45,7 +45,7 @@ People::People(string fname, string output) {
 
         }
 
-        for (int i = 1; i <= visited.size(); ++i) {
+        for (int i = 1; i <= people_count; ++i) {
             if (visited[i] == false) {
                 BFS(i);
                 ++communities;
